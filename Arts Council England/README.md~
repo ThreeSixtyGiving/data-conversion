@@ -1,0 +1,121 @@
+Arts Council England
+=====================
+
+Data Source
+-------------
+ACE Website: http://www.artscouncil.org.uk/funding/grants-arts/awards-made-area-and-artform/
+
+On 360 Giving
+------------------
+Registry Organisation: http://data.threesixtygiving.org/group/arts-council-england
+
+CSV File: http://data.threesixtygiving.org/dataset/arts-council-england-grants
+
+JSON: 
+
+
+Data Modelling
+------------------
+Source data has been transformed to 360 using Open Refine.  The Open Refine project has been exported and added to this repository.
+
+Identifiers
+---------------
+360 Giving namespace:
+
+* 360G-ACE
+
+Organisation Identifier:
+ACE have a Royal Charter (http://www.artscouncil.org.uk/who-we-are/), which is registered on Companies House as RC000742 (https://opencorporates.com/companies/gb/RC000742)
+
+* GB-COH-RC000742
+
+File Transformations
+-------------------------
+The source file has two sheets:
+
+* Front Page - this is a lookup for various files.  This is not used.
+* Full List of Awards - this is the data.  On this sheet, the first two rows are removed, to leave the column headings and data.
+
+Data Transformations
+------------------------
+
+| 360 Data Column | Transformation                              |
+|-----------------|---------------------------------------------|
+| Identifier      | Concat of Funding Org:Identifier + Ref No   |
+| Amount Awarded  | Value changed to numeric - £76,454 to 76454 |
+| Award Date      | Format changed to YYYY-MM-DD                |
+
+Column Transformations
+-------------------------
+
+| Source Data Column Name | 360 Column Name            |
+|-------------------------|----------------------------|
+| Recipient               | Recipient Org:Name         |
+| Activity name           | Title                      |
+| Award amount            | Amount Awarded             |
+| Award date              | Award Date                 |
+| Local authority         | Beneficiary Location: Name |
+
+Columns Added
+----------------
+
+| New 360 Column Name    | Value(s)                                                                        |
+|------------------------|---------------------------------------------------------------------------------|
+| Identifier             | Concat of Funding Org:Identifier + Ref No                                       |
+| Currency               | GBP                                                                             |
+| Funding Org:Identifier | GB-COH-RC000742                                                                 |
+| Funding Org:Name       | Arts Council England                                                            |
+| Grant Programme: Name  | Grants for the arts                                                             |
+| Data source            | http://www.artscouncil.org.uk/funding/grants-arts/awards-made-area-and-artform/ |
+| Last modified          | dateTime                                                                        |
+Columns Not Mapped
+--------------------
+
+| Source Data Column Name | Notes                                              |
+|-------------------------|----------------------------------------------------|
+| Ref No                  | Maintained as original source                      |
+| Decision quarter        | 360 does not support periods                       |
+| Area                    | 360 currently lacks facility to add a region       |
+| Main art form           | To be mapped / expressed using 360 Classifications |
+
+
+Required Fields Status
+------------------------------
+
+| Required Field           | Notes      |
+|--------------------------|------------|
+| Identifier               | Created    |
+| Title                    | Mapped     |
+| Description              | Not present |
+| Currency                 | Added      |
+| Amount Awarded           | Mapped     |
+| Award Date               | Mapped     |
+| Recipient Org:Identifier | Not created |
+| Recipient Org: Name      | Added      |
+| Funding Org: Identifier  | Added      |
+| Funding Org: Name        | Added      |
+
+Additional Notes
+-----------------------
+
+Inconsistent use of Identifier in source data
+*********************************************
+Data presented at source (http://www.artscouncil.org.uk/funding/grants-arts/awards-made-area-and-artform/) lacks a consistent use of the column Ref No, which is in turn used for the grant Identifier.  In the current live data, only the 2013-14 dataset publishes this column - it is in sporadic use in the monthly datasets.  Hence, only 2013-14 has been transformed and published.  
+See Issue:
+
+No Recipient Org:Identifier
+*********************************************
+This has not yet been added to the data.
+See Issue:
+
+Regional / Local Authority Names not mapped
+*********************************************
+Some work is needed to mint region and local authority references
+See Issue: 
+
+Main art form / Classifications
+*********************************************
+Extra work needed to transform "Main art form" into structured Classification
+See Issue: 
+
+
