@@ -1,0 +1,115 @@
+Arts Council of Northern Ireland
+================================
+
+Data Source
+-------------
+ACNI Website: http://www.artscouncil-ni.org/funding/previous-awards
+
+(via original FoI: https://www.whatdotheyknow.com/request/grants_for_last_five_financial_y_3#incoming-497804)
+
+On 360 Giving
+------------------
+Registry Organisation: http://data.threesixtygiving.org/group/arts-council-northern-ireland
+
+CSV File: http://data.threesixtygiving.org/dataset/arts-council-northern-ireland-grants
+
+JSON: 
+
+
+Data Modelling
+------------------
+Source data has been transformed to 360 using Open Refine.  The Open Refine project has been exported and added to this repository.
+
+
+Identifiers
+---------------
+360 Giving namespace:
+
+* 360G-ACNI
+
+Organisation Identifier:
+The ACNI is a statutory body.  It does not have a Royal Charter, as per Arts Councils in England and Wales.  ACNI used to a Company Limited by Guarantee (https://opencorporates.com/companies/gb/NI028253).
+
+Hance, for an Org ID, a temporary namespace of GB-SB-ACNI has been created.
+
+* GB-SB-ACNI
+
+File Transformations
+-------------------------
+The source file has one sheet:
+
+* Sheet1 - this lists the grants.  The first three rows were removed, in order to maintain data and column headers.  The original source file also contains thousands of blank rows - so the actual data was copied to a new file.
+
+Data Transformations
+------------------------
+
+| 360 Data Column | Transformation                                                        |
+|-----------------|-----------------------------------------------------------------------|
+| Identifier      | Concat of Funding Org:Identifier + MD5 hash of Title (no ID provided) |
+| Title           | Concat of Fund + Recipient Org:Name + Financial Year                  |
+| Award Date      | Final date of Financial Year added                                    |
+
+Column Transformations
+-------------------------
+
+| Source Data Column Name    | 360 Column Name    |
+|----------------------------|--------------------|
+| Organisation / Artist Name | Recipient Org:Name |
+| Grant                      | Amount Awarded     |
+
+
+Columns Added
+----------------
+
+| New 360 Column Name    | Value(s)                                                              |
+|------------------------|-----------------------------------------------------------------------|
+| Identifier             | Concat of Funding Org:Identifier + MD5 hash of Title (no ID provided) |
+| Currency               | GBP                                                                   |
+| Funding Org:Identifier | GB-SB-ACNI                                                            |
+| Funding Org:Name       | Arts Council of Northern Ireland                                      |
+| Data source            | http://www.artscouncil-ni.org/funding/previous-awards                 |
+| Last modified          | dateTime                                                              |
+
+Columns Not Mapped
+--------------------
+
+| Source Data Column Name | Notes                        |
+|-------------------------|------------------------------|
+| Scheme                  | To be investigated           |
+| Financial Year          | 360 does not support periods |
+
+Required Fields Status
+------------------------------
+
+| Required Field           | Notes       |
+|--------------------------|-------------|
+| Identifier               | Created     |
+| Title                    | Created     |
+| Description              | Not created |
+| Currency                 | Added       |
+| Amount Awarded           | Mapped      |
+| Award Date               | Created     |
+| Recipient Org:Identifier | Not created |
+| Recipient Org: Name      | Added       |
+| Funding Org: Identifier  | Added       |
+| Funding Org: Name        | Added       |
+
+Additional Notes
+-----------------------
+
+No Identifier in source data
+*********************************************
+Data presented at source (http://www.artscouncil-ni.org/funding/previous-awards) does not contain a grant identifier.  A hash of the Title has been created to enable this. 
+See Issue:
+
+No Recipient Org:Identifier
+*********************************************
+This has not yet been added to the data.
+See Issue:
+
+Programme Type / Schema Classifications
+*********************************************
+Extra work needed to transform "Programme Type" and "Scheme" into structured Classification
+See Issue: 
+
+
