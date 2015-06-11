@@ -1,14 +1,14 @@
 Data Conversion
-=====================
+===============
 
 About
--------------
+-----
 Repository to document the processes undertaken when converting various data sources to the 360 Standard.
 
 For each data source, a new sub-directory will be created.
 
 Documentation
----------------
+-------------
 For each data source, the following are documented:
 
 | Section                | Definition                                                      |
@@ -26,5 +26,5 @@ For each data source, the following are documented:
 | Additional Notes       | Further notes, and links to any Issues                          |
 
 Issues
----------------
+------
 Where issues arise with the data conversion, a GitHub Issue will be posted: https://github.com/ThreeSixtyGiving/data-conversion/issues

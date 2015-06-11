@@ -1,5 +1,5 @@
 '''
-Rought and ready script to pull all the data from the 360Giving dkan
+Rough and ready script to pull all the data from the 360Giving dkan
 to a local machine.
 
 Probably needs some work..
