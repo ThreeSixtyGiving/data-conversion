@@ -49,7 +49,7 @@ Data Transformations
 | Title           | Concat of Fund + Recipient Org:Name + Financial Year                  |
 | Award Date      | Final date of Financial Year added                                    |
 
-Column Transformations
+Columns Renamed
 -------------------------
 
 | Source Data Column Name    | 360 Column Name    |
