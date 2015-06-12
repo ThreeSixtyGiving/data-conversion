@@ -102,21 +102,21 @@ Additional Notes
 Inconsistent use of Identifier in source data
 *********************************************
 Data presented at source (http://www.artscouncil.org.uk/funding/grants-arts/awards-made-area-and-artform/) lacks a consistent use of the column Ref No, which is in turn used for the grant Identifier.  In the current live data, only the 2013-14 dataset publishes this column - it is in sporadic use in the monthly datasets.  Hence, only 2013-14 has been transformed and published.  
-See Issue:
+See Issue: https://github.com/ThreeSixtyGiving/data-conversion/issues/1
 
 No Recipient Org:Identifier
 *********************************************
 This has not yet been added to the data.
-See Issue:
+See Issue: https://github.com/ThreeSixtyGiving/data-conversion/issues/2
 
 Regional / Local Authority Names not mapped
 *********************************************
 Some work is needed to mint region and local authority references
-See Issue: 
+See Issue: https://github.com/ThreeSixtyGiving/data-conversion/issues/3
 
 Main art form / Classifications
 *********************************************
 Extra work needed to transform "Main art form" into structured Classification
-See Issue: 
+See Issue: https://github.com/ThreeSixtyGiving/data-conversion/issues/4
 
 

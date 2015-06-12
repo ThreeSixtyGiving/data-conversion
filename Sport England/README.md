@@ -125,20 +125,21 @@ Additional Notes
 No Recipient Org:Identifier
 *********************************************
 This has not yet been added to the data.
-See Issue:
+See Issue: https://github.com/ThreeSixtyGiving/data-conversion/issues/2
 
 Region, Local Authority & Parliamentary Constuency not mapped
 **************************************************************
 Some work is needed to mint region and admin geo references
-See Issue: 
+See Issue: https://github.com/ThreeSixtyGiving/data-conversion/issues/3
 
 Organisation Type not mapped
 **************************************************************
-See Issue: 
+See Issue: https://github.com/ThreeSixtyGiving/data-conversion/issues/4
 
 Lottery and Exchequer sources
 *************************************
 Investigate how best to attribute these sources in the data.
+See Issue: https://github.com/ThreeSixtyGiving/data-conversion/issues/6
 
 
 

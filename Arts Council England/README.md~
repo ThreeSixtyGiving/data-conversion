@@ -36,7 +36,7 @@ The source file has two sheets:
 * Front Page - this is a lookup for various files.  This is not used.
 * Full List of Awards - this is the data.  On this sheet, the first two rows are removed, to leave the column headings and data.
 
-Column Transformations
+Columns Renamed
 -------------------------
 
 | Source Data Column Name | 360 Column Name            |
