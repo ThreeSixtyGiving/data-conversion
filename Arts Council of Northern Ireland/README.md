@@ -40,16 +40,8 @@ The source file has one sheet:
 
 * Sheet1 - this lists the grants.  The first three rows were removed, in order to maintain data and column headers.  The original source file also contains thousands of blank rows - so the actual data was copied to a new file.
 
-Data Transformations
-------------------------
 
-| 360 Data Column | Transformation                                                        |
-|-----------------|-----------------------------------------------------------------------|
-| Identifier      | Concat of Funding Org:Identifier + MD5 hash of Title (no ID provided) |
-| Title           | Concat of Fund + Recipient Org:Name + Financial Year                  |
-| Award Date      | Final date of Financial Year added                                    |
-
-Column Transformations
+Columns Renamed
 -------------------------
 
 | Source Data Column Name    | 360 Column Name    |
@@ -78,6 +70,16 @@ Columns Not Mapped
 | Scheme                  | To be investigated           |
 | Financial Year          | 360 does not support periods |
 
+Data Transformations
+------------------------
+
+| 360 Data Column | Transformation                                                        |
+|-----------------|-----------------------------------------------------------------------|
+| Identifier      | Concat of Funding Org:Identifier + MD5 hash of Title (no ID provided) |
+| Title           | Concat of Fund + Recipient Org:Name + Financial Year                  |
+| Award Date      | Final date of Financial Year added                                    |
+
+
 Required Fields Status
 ------------------------------
 
@@ -100,16 +102,16 @@ Additional Notes
 No Identifier in source data
 *********************************************
 Data presented at source (http://www.artscouncil-ni.org/funding/previous-awards) does not contain a grant identifier.  A hash of the Title has been created to enable this. 
-See Issue:
+See Issue: https://github.com/ThreeSixtyGiving/data-conversion/issues/5
 
 No Recipient Org:Identifier
 *********************************************
 This has not yet been added to the data.
-See Issue:
+See Issue: https://github.com/ThreeSixtyGiving/data-conversion/issues/2
 
 Programme Type / Schema Classifications
 *********************************************
 Extra work needed to transform "Programme Type" and "Scheme" into structured Classification
-See Issue: 
+See Issue: https://github.com/ThreeSixtyGiving/data-conversion/issues/4
 
 

@@ -36,7 +36,7 @@ File Transformations
 The source file has one sheet.  No edits were made to the structure or format.
 
 
-Column Transformations
+Columns Renamed
 -------------------------
 
 | Source Data Column Name  | 360 Column Name            |
@@ -97,11 +97,11 @@ Additional Notes
 No Recipient Org:Identifier
 *********************************************
 This has not yet been added to the data.
-See Issue:
+See Issue: https://github.com/ThreeSixtyGiving/data-conversion/issues/2
 
 Government Region not mapped
 *********************************************
 Some work is needed to mint region and local authority references
-See Issue: 
+See Issue: https://github.com/ThreeSixtyGiving/data-conversion/issues/3
 
 

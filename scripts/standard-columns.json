@@ -1,0 +1,67 @@
+[
+  {
+    "op": "core/column-addition",
+    "description": "Create column Currency",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Currency",
+    "columnInsertIndex": 7,
+    "baseColumnName": "Title",
+    "expression": "grel:\"GBP\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column Funding Org:Identifier",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Funding Org:Identifier",
+    "columnInsertIndex": 10,
+    "baseColumnName": "Title",
+    "expression": "grel:\"GB-COH-RC000766\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column Funding Org:Name",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Funding Org:Name",
+    "columnInsertIndex": 11,
+    "baseColumnName": "Title",
+    "expression": "grel:\"Sport England\"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column Data source",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Data source",
+    "columnInsertIndex": 12,
+    "baseColumnName": "Title",
+    "expression": "grel:\"http://www.sportengland.org/funding/investments-weve-made/"",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column Last modified",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Last modified",
+    "columnInsertIndex": 13,
+    "baseColumnName": "Title",
+    "expression": "grel:\"2015-09-11\"",
+    "onError": "set-to-blank"
+  }
+]

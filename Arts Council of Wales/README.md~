@@ -36,15 +36,7 @@ File Transformations
 The source file has one sheet.  No edits were made to the structure or format.
 
 
-Data Transformations
-------------------------
-
-| 360 Data Column | Transformation                                |
-|-----------------|-----------------------------------------------|
-| Identifier      | Concat of Funding Org:Identifier + ID         |
-| Title           | Concat of Recipient Org:Name + Financial Year |
-
-Column Transformations
+Columns Renamed
 -------------------------
 
 | Source Data Column Name  | 360 Column Name            |
@@ -75,6 +67,13 @@ Columns Not Mapped
 | Type                    | Grant type not yet supported |
 | Financial Year          | 360 does not support periods |
 
+Data Transformations
+------------------------
+
+| 360 Data Column | Transformation                                |
+|-----------------|-----------------------------------------------|
+| Identifier      | Concat of Funding Org:Identifier + ID         |
+| Title           | Concat of Recipient Org:Name + Financial Year |
 
 Required Fields Status
 ------------------------------

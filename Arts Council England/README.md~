@@ -36,16 +36,7 @@ The source file has two sheets:
 * Front Page - this is a lookup for various files.  This is not used.
 * Full List of Awards - this is the data.  On this sheet, the first two rows are removed, to leave the column headings and data.
 
-Data Transformations
-------------------------
-
-| 360 Data Column | Transformation                              |
-|-----------------|---------------------------------------------|
-| Identifier      | Concat of Funding Org:Identifier + Ref No   |
-| Amount Awarded  | Value changed to numeric - £76,454 to 76454 |
-| Award Date      | Format changed to YYYY-MM-DD                |
-
-Column Transformations
+Columns Renamed
 -------------------------
 
 | Source Data Column Name | 360 Column Name            |
@@ -68,6 +59,7 @@ Columns Added
 | Grant Programme: Name  | Grants for the arts                                                             |
 | Data source            | http://www.artscouncil.org.uk/funding/grants-arts/awards-made-area-and-artform/ |
 | Last modified          | dateTime                                                                        |
+
 Columns Not Mapped
 --------------------
 
@@ -77,6 +69,15 @@ Columns Not Mapped
 | Decision quarter        | 360 does not support periods                       |
 | Area                    | 360 currently lacks facility to add a region       |
 | Main art form           | To be mapped / expressed using 360 Classifications |
+
+Data Transformations
+------------------------
+
+| 360 Data Column | Transformation                              |
+|-----------------|---------------------------------------------|
+| Identifier      | Concat of Funding Org:Identifier + Ref No   |
+| Amount Awarded  | Value changed to numeric - £76,454 to 76454 |
+| Award Date      | Format changed to YYYY-MM-DD                |
 
 
 Required Fields Status
