@@ -6,7 +6,15 @@ Uses the example csv file from:
 http://docs.threesixtygiving.org/assets/standard/schema/summary-table/360-giving-schema-titles.csv/Activity.csv
 renamed as 360Activity.csv, and in the same directory as this script
 
-Usage: python check_titles.py
+Usage: 
+Make sure 360Activity.csv is in the same directory as this script
+If your csv files are in the same directory, simply run:
+
+python check_titles.py
+
+Optionally you can add a command line argument with the path to your csvs
+e.g. If your files are in a 'data' directory 
+python check_titles.py data
 
 You might want to pipe the results to a file:
 python check_titles.py > results.txt
@@ -14,6 +22,7 @@ python check_titles.py > results.txt
 
 import csv
 import os
+import sys
 #import pandas as pd
 
 # Required fields as defined here:
@@ -43,8 +52,13 @@ with open('360Activity.csv', 'rb') as csvfile:
 
 # Find all csv files in the current directory
 # Ignore the example csv file tho!
+if len(sys.argv) == 2:
+    folder = sys.argv[1] 
+else:
+    folder = os.getcwd()
+
 csvs = []
-for i in os.listdir(os.getcwd()):
+for i in os.listdir(folder):
     if i.endswith(".csv") and i != '360Activity.csv': 
         csvs.append(i)
         continue
@@ -60,7 +74,7 @@ Uses the python 'set' function to compare lists
 '''
 for csv_file in csvs:
     # print ('Checking ' + csv_file)
-    with open(csv_file, 'rb') as csvfile:
+    with open(folder + '/' + csv_file, 'rb') as csvfile:
           reader = csv.reader(csvfile, delimiter=',', quotechar='"')
           first_row = next(reader)
           #for row in spamreader:
