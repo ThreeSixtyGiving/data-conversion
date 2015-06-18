@@ -15,6 +15,11 @@ import time
 # Used to debug connection info
 httplib.HTTPConnection.debuglevel = 1
 
+# Create a directory to hold the data
+data_directory = 'data'
+if not os.path.exists(data_directory):
+    os.makedirs(data_directory)
+
 # Fetch a list of package information from DKAN
 base_url = "http://data.threesixtygiving.org/api/3/action/"
 url = base_url + "package_list"
@@ -64,24 +69,26 @@ for result in data['result']:
             if testfile.headers.get('Last-Modified'):
             # Check to see if file already exists. If so see if it needs
             # grabbing again (check against last modified response)
-                if os.path.isfile(result + '.csv'):
-                    file_last_modified = time.ctime(os.path.getmtime(result + '.csv'))
+                if os.path.isfile(data_directory + '/' + result + '.csv'):
+                    file_last_modified = time.ctime(os.path.getmtime(data_directory + '/' + result + '.csv'))
                     header_last_modified = testfile.headers.get('Last-Modified')
-                    print "last modified: %s" % time.ctime(os.path.getmtime(result + '.csv'))
-                    print "created: %s" % time.ctime(os.path.getctime(result + '.csv'))
+                    print "last modified: %s" % time.ctime(os.path.getmtime(data_directory + '/' + result + '.csv'))
+                    print "created: %s" % time.ctime(os.path.getctime(data_directory + '/' + result + '.csv'))
                     #print('Last Modified response: ' + testfile.headers.get('Last-Modified'))
                     if header_last_modified > file_last_modified:
                         print('Fetching file')
                         data = testfile.read()
-                        with open(result + '.csv', 'wb') as code:
+                        with open(data_directory + '/' + result + '.csv', 'wb') as code:
                             code.write(data)
                     else:
                         print('File on disk newer than remote. Skip downloading')
                 else:  # Fetch file
+                    print('Fetching file')
                     data = testfile.read()
-                    with open(result + '.csv', 'wb') as code:
+                    with open(data_directory + '/' + result + '.csv', 'wb') as code:
                         code.write(data)
             else:  # Fetch file
+                print('Fetching file')
                 data = testfile.read()
-                with open(result + '.csv', 'wb') as code:
+                with open(data_directory + '/' + result + '.csv', 'wb') as code:
                     code.write(data)
