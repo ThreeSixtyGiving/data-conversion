@@ -5,30 +5,21 @@ to a local machine.
 Probably needs some work..
 '''
 
-import urllib2
+import requests
 import json
-import httplib
 import os.path
 import time
 
 
-# Used to debug connection info
-httplib.HTTPConnection.debuglevel = 1
-
 # Create a directory to hold the data
 data_directory = 'data'
-if not os.path.exists(data_directory):
-    os.makedirs(data_directory)
+os.makedirs(data_directory, exist_ok=True)
 
 # Fetch a list of package information from DKAN
 base_url = "http://data.threesixtygiving.org/api/3/action/"
-url = base_url + "package_list"
-request = urllib2.Request(url)
-response = urllib2.urlopen(url)
-#print(response.headers.dict)
-#quit()
-data = json.loads(response.read())
-print(data)
+url = base_url + "current_package_list_with_resources"
+request = requests.get(url)
+data = request.json()
 
 '''
     Loop through the packages to get the URLs of the data.
@@ -38,57 +29,28 @@ print(data)
     Note we are only grabbing csv files
 '''
 for result in data['result']:
-    # Use this for testing, jys just grab a single package
-    #if result != "blf-grants-data-2004-onwards":
-        #continue
-    # Fetch a single package, to find the URLs of all the raw data
-    url = base_url + "package_show?id=" + result
-    print (result)
-    response2 = urllib2.urlopen(url)
-    data_package = json.loads(response2.read())
+    # We need to make another request with the ID https://github.com/ThreeSixtyGiving/data.threesixtygiving.org/issues/11
+    response3 = requests.get(base_url + 'package_show?id=' + result['id'])
+    data_package = response3.json()
 
-    # Find the raw data we want from the resources in the previous data.
+    # Find the raw data we want from the resources in the data.
     # We only want csvs
     for resource in data_package['result']['resources']:
         if resource['format'] == 'csv':
             print (resource['id'])
             # Now we have the resource, so go and find the URL of the data (at last!
             url = base_url + "resource_show?id=" + resource['id']
-            response3 = urllib2.urlopen(url)
-            #print(response3.headers.dict)
-            #quit()
-            data_package2 = json.loads(response3.read())
-            data_url = data_package2['result']['url']
+            response3 = requests.get(url)
+            data_resource = response3.json()
+            data_url = data_resource['result']['url']
             # We have the URL!
             print(data_url)
 
             # Fetch the data!
-            testfile = urllib2.urlopen(data_url)
-            #print(testfile.headers.dict) # Get the response headers
+            testfile = requests.get(data_url)
 
-            if testfile.headers.get('Last-Modified'):
-            # Check to see if file already exists. If so see if it needs
-            # grabbing again (check against last modified response)
-                if os.path.isfile(data_directory + '/' + result + '.csv'):
-                    file_last_modified = time.ctime(os.path.getmtime(data_directory + '/' + result + '.csv'))
-                    header_last_modified = testfile.headers.get('Last-Modified')
-                    print "last modified: %s" % time.ctime(os.path.getmtime(data_directory + '/' + result + '.csv'))
-                    print "created: %s" % time.ctime(os.path.getctime(data_directory + '/' + result + '.csv'))
-                    #print('Last Modified response: ' + testfile.headers.get('Last-Modified'))
-                    if header_last_modified > file_last_modified:
-                        print('Fetching file')
-                        data = testfile.read()
-                        with open(data_directory + '/' + result + '.csv', 'wb') as code:
-                            code.write(data)
-                    else:
-                        print('File on disk newer than remote. Skip downloading')
-                else:  # Fetch file
-                    print('Fetching file')
-                    data = testfile.read()
-                    with open(data_directory + '/' + result + '.csv', 'wb') as code:
-                        code.write(data)
-            else:  # Fetch file
-                print('Fetching file')
-                data = testfile.read()
-                with open(data_directory + '/' + result + '.csv', 'wb') as code:
-                    code.write(data)
+            os.makedirs(os.path.join(data_directory, result['name']), exist_ok=True)
+            output_name = os.path.join(data_directory, result['name'], resource['id'] + '.csv')
+
+            with open(output_name, 'wb') as fp:
+                fp.write(testfile.content)
