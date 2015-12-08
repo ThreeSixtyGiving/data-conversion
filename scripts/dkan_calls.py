@@ -36,21 +36,26 @@ for result in data['result']:
     # Find the raw data we want from the resources in the data.
     # We only want csvs
     for resource in data_package['result']['resources']:
-        if resource['format'] == 'csv':
-            print (resource['id'])
-            # Now we have the resource, so go and find the URL of the data (at last!
-            url = base_url + "resource_show?id=" + resource['id']
-            response3 = requests.get(url)
-            data_resource = response3.json()
-            data_url = data_resource['result']['url']
-            # We have the URL!
-            print(data_url)
+        #if resource['format'] == 'csv':
+        print ('Organisation: ' + result['name'])
+        print ('Resource: ' + resource['id'])
+        # Now we have the resource, so go and find the URL of the data (at last!
+        url = base_url + "resource_show?id=" + resource['id']
+        print ('DKAN link: ' + url)
+        response3 = requests.get(url)
+        data_resource = response3.json()
+        data_url = data_resource['result']['url']
+        # We have the URL!
+        print('Link: ' + data_url)
 
-            # Fetch the data!
-            testfile = requests.get(data_url)
+        # Fetch the data!
+        testfile = requests.get(data_url)
 
-            os.makedirs(os.path.join(data_directory, result['name']), exist_ok=True)
-            output_name = os.path.join(data_directory, result['name'], resource['id'] + '.csv')
+        os.makedirs(os.path.join(data_directory, result['name']), exist_ok=True)
+        # Save file with resource_id as file name
+        #output_name = os.path.join(data_directory, result['name'], resource['id'] + '.csv')
+        #Save file with last part of data_Url as the file name 
+        output_name = os.path.join(data_directory, result['name'], data_url.rsplit('/',1)[-1])
 
-            with open(output_name, 'wb') as fp:
-                fp.write(testfile.content)
+        with open(output_name, 'wb') as fp:
+            fp.write(testfile.content)
